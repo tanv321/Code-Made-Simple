@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+    
+    {% load tailwind_filters %}
 
 {% block content %}
 <form method = "post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form |crispy }}
     <button type = 'submit'> signup </button>
 </form>
 

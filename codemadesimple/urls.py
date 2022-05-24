@@ -22,9 +22,10 @@ from codesimple.views import SignupView, home_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', home_page, name = 'home'),
+    path('home/', home_page.as_view(), name = 'home'),
     path('signup/', SignupView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
+    path('', LoginView.as_view(), name='login'),
 
 
 ]

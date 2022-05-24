@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, intial-scale=1.">
-    <title>DJCRM</title>
+    <title></title>
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> {#we will use tailwinds to design our pages#}
 </head>
 <body>  
     <div class ="max-w-7xl mx-auto">
+       {% include 'navbar.html' %}
        {% block content%}  {#we will use this to wrap our specfic html body#}
        {% endblock content %}
     </div>

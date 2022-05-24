@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from codesimple.views import home_page, SignupView
+from django.contrib.auth.views import LoginView
+from codesimple.views import SignupView, home_page
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home_page, name = 'home'),
     path('signup/', SignupView.as_view(), name='signup'),
+    path('login/', LoginView.as_view(), name='login'),
+
 
 ]
 

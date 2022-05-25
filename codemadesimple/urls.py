@@ -17,17 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.contrib.auth.views import LoginView, LogoutView
-from codesimple.views import SignupView, home_page, blogNew
+from codesimple.views import SignupView, home_page, blogNew, blogList
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', home_page.as_view(), name = 'home'),
+    # path('home/', home_page.as_view(), name = 'home'),
     path('signup/', SignupView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
     path('', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name= "logout"),
-    path('myblogs/', blogNew, name="myblogs")    
+    path('myblogs/', blogNew, name="myblogs"),
+    path('home/', blogList, name = "home"),
+
 
 ]
 

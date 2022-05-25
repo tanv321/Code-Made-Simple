@@ -4,7 +4,8 @@ from .forms import CustomUserCreationForm, blogPostForm
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required  #login required for function based view
 from django.contrib.auth.mixins import LoginRequiredMixin  #login requied for class based views
-
+from django.contrib import messages
+from .models import blogPost
 # Create your views here.
 class home_page(LoginRequiredMixin, TemplateView):
     template_name = "codesimple/home_page.html"
@@ -26,4 +27,16 @@ def blogNew(request):
             return redirect("/home")
     else:
         form = blogPostForm()
-    return render(request, "codesimple/myblogs.html", {"form":form})
+    context = { 
+        "form": form 
+    }
+    return render(request, "codesimple/myblogs.html", context)
+
+@login_required 
+def blogList(request):
+    blogs = blogPost.objects.all()
+    context = {
+        "blogs":blogs
+    }
+    return render(request, "codesimple/home_page.html", context)
+

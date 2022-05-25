@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, intial-scale=1.">
-    <title>Document</title>
-</head>
-<body>      
-        <h1> Hello World </h1>
-</body>
-</html>
+
+<h1> Your created articles: </h1>
+<br/>
+<br/>
+{% for obj in blogs %}
+    <h1> TITLE {{ obj }} </h1>
+          
+    <br/>
+    <br/>
+    <br/>
+
+
+    
+{% endfor %}
+        
+
+
 {% endblock content %}

@@ -44,3 +44,10 @@ def blogList(request):
 
 
 
+@login_required
+def listMyBlogs(request):
+    blogs = blogPost.objects.filter(created_by=request.user)
+    context = {
+        "blogs":blogs
+    }
+    return render(request, "codesimple/listmyblogs.html", context)

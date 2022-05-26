@@ -2,14 +2,15 @@
 
 {% block content %}
 
-<h1> All created articles: </h1>
+<h1> My articles </h1>
+
 <br/>
 <br/>
 {% for obj in blogs %}
-    <h1> Title:   {{ obj.title }} </h1>
+    <h1> Title:   {{ obj }} </h1>
     <h1> Body:    {{ obj.body  }} </h1>
     <h1> Creator: {{ obj.created_by  }} </h1>
-          
+    
     <br/>
     <br/>
     <br/>

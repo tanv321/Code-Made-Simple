@@ -1,8 +1,9 @@
+from tkinter import Widget
 from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.contrib.auth import get_user_model
 from .models import blogPost
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 User = get_user_model()
 
 class CustomUserCreationForm(UserCreationForm):
@@ -18,5 +19,7 @@ class blogPostForm(ModelForm):
         fields = [
             'title',
             'body',
-            'created_by',
         ]
+        widgets = {
+            'body': Textarea()
+        }

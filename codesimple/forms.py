@@ -14,4 +14,9 @@ class CustomUserCreationForm(UserCreationForm):
 class blogPostForm(ModelForm):
     class Meta:
         model = blogPost
-        fields = '__all__'
+        exclude = ('created_by',)
+        fields = [
+            'title',
+            'body',
+            'created_by',
+        ]

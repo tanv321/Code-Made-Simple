@@ -23,6 +23,7 @@ def blogNew(request):
     if request.method == "POST":
         form = blogPostForm(request.POST)
         if form.is_valid():
+            form.instance.created_by = request.user
             form.save()
             return redirect("/home")
     else:
@@ -32,6 +33,7 @@ def blogNew(request):
     }
     return render(request, "codesimple/myblogs.html", context)
 
+
 @login_required 
 def blogList(request):
     blogs = blogPost.objects.all()
@@ -39,4 +41,6 @@ def blogList(request):
         "blogs":blogs
     }
     return render(request, "codesimple/home_page.html", context)
+
+
 

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class blogPost(models.Model):
     title = models.CharField(max_length=100)
     body = models.CharField(max_length=5000)
-    created_by = models.ForeignKey(User, related_name='created_by', on_delete=models.DO_NOTHING)
+    created_by = models.ForeignKey(User, default=1, on_delete=models.DO_NOTHING)
     def __str__(self):
         return f"{self.title}"
     

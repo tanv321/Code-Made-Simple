@@ -22,7 +22,10 @@
         </div>
           <h1 style = "background-color:powderblue;" style=font-size:27px > Title:     {{ blogs.title }} </h1><br/>
           <h1 style ="background-color:white;" style=font-size:20px> Content:    {{ blogs.content  }} </h1><br/>
-          <h1 style=font-size:20px> Creator:    {{ blogs.created_by  }} </h1>            
+          <h1 style=font-size:20px> Creator:    {{ blogs.created_by  }} </h1>     
+          {% if request.user == blogs.created_by %}
+          <a style ="color:red;" href={% url "blog-delete" blogs.pk %}>Delete Article</a>  
+          {% endif %}             
 </section>
 {% endblock content %}
     

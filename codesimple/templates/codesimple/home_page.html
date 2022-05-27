@@ -6,12 +6,7 @@
 <h1> All created articles: </h1>
 <br/>
 <br/>
-.limitText {
-    width: 20px;
-    white-space: nowrap;  
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+
 {% for obj in blogs %}
     <h1> Title:      {{ obj.title }} </h1>
     <h1> Content:    {{ obj.content |slice:"200"  }} </h1> 

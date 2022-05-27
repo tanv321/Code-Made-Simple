@@ -24,9 +24,11 @@
 <br/>
 {% for obj in blogs %}
     <h1> Title:   {{ obj }} </h1>
-    <h1> Content:    {{ obj.content  }} </h1>
+    <h1> Content:    {{ obj.content |slice:"200"  }} </h1>
     <h1> Creator: {{ obj.created_by  }} </h1>
-    
+
+    <a style ="color:blue;" href="/home/{{obj.pk}}">click here for full detail</a> <br/>
+    <a style ="color:red;" href={% url "blog-delete" obj.pk %}>Delete Article</a>  
     <br/>
     <br/>
     <br/>

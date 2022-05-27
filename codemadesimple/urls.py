@@ -18,14 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.contrib.auth.views import LoginView, LogoutView
 from codesimple.views import SignupView, home_page, blogNew, blogList, listMyBlogs, blogDetailView, blogDeletelView
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('home/', home_page.as_view(), name = 'home'),
     path('signup/', SignupView.as_view(), name='signup'),
-    path('login/', LoginView.as_view(), name='login'),
-    path('', LoginView.as_view(), name='login'),
+    path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
+    path('', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
     path('logout/', LogoutView.as_view(), name= "logout"),
     path('myblogs/', blogNew, name="myblogs"),
     path('home/', blogList, name = "home"),

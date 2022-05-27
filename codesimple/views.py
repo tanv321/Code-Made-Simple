@@ -64,6 +64,8 @@ def blogDetailView(request, pk):
 
 @login_required
 def blogDeletelView(request, pk):
+    
     blogs = blogPost.objects.get(id=pk)
-    blogs.delete()
+    if request.user == blogs.created_by:
+        blogs.delete()
     return redirect("/home")

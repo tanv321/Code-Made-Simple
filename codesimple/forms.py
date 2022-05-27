@@ -18,8 +18,8 @@ class blogPostForm(ModelForm):
         exclude = ('created_by',)
         fields = [
             'title',
-            'body',
+            'content',
         ]
         widgets = {
-            'body': Textarea()
+            'content': Textarea()
         }

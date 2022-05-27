@@ -2,13 +2,29 @@
 
 {% block content %}
 
-<h1> My articles </h1>
+<html>
+  <head>
+  <style>
+    a.fixed {
+    position: fixed;
+    right: 0;
+    top: -3;
+    width: 100px;
+        }
+  </style>
+  </head>
+    <body>
+    <a class="fixed" href="{% url 'home' %}">Back to All Articles</a>
+    </a>
+    </body>
+</html>
+<h1> <b> My Articles</b> </h1>
 
 <br/>
 <br/>
 {% for obj in blogs %}
     <h1> Title:   {{ obj }} </h1>
-    <h1> Body:    {{ obj.body  }} </h1>
+    <h1> Content:    {{ obj.content  }} </h1>
     <h1> Creator: {{ obj.created_by  }} </h1>
     
     <br/>

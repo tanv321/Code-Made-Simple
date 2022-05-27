@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, reverse
 from django.views import generic
 from .forms import CustomUserCreationForm, blogPostForm
@@ -51,3 +52,14 @@ def listMyBlogs(request):
         "blogs":blogs
     }
     return render(request, "codesimple/listmyblogs.html", context)
+
+
+@login_required
+def blogDetailView(request, pk):
+    template_name = "codesimple/blogDetailView.html"
+    blogs = blogPost.objects.get(id=pk)
+    context = {
+        "blogs":blogs
+    }
+    return render(request, "codesimple/blogDetailView.html", context)
+

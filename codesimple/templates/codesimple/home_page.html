@@ -6,10 +6,10 @@
 <br/>
 <br/>
 {% for obj in blogs %}
-    <h1> Title:   {{ obj.title }} </h1>
-    <h1> Body:    {{ obj.body  }} </h1>
-    <h1> Creator: {{ obj.created_by  }} </h1>
-          
+    <h1> Title:      {{ obj.title }} </h1>
+    <h1> Content:    {{ obj.content  }} </h1>
+    <h1> Creator:    {{ obj.created_by  }} </h1>
+    <a href="/home/{{obj.pk}}">click here for full detail</a>          
     <br/>
     <br/>
     <br/>

@@ -9,12 +9,13 @@
     <h1> Title:      {{ obj.title }} </h1>
     <h1> Content:    {{ obj.content  }} </h1>
     <h1> Creator:    {{ obj.created_by  }} </h1>
-    <a href="/home/{{obj.pk}}">click here for full detail</a>          
+    <a style ="color:blue;" href="/home/{{obj.pk}}">click here for full detail</a> <br/>
+    {% if request.user == obj.created_by %}
+        <a style ="color:red;" href={% url "blog-delete" obj.pk %}>Delete Article</a>  
+    {% endif %}            
     <br/>
     <br/>
     <br/>
-
-
     
 {% endfor %}
         

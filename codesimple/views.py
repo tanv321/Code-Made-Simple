@@ -56,10 +56,14 @@ def listMyBlogs(request):
 
 @login_required
 def blogDetailView(request, pk):
-    template_name = "codesimple/blogDetailView.html"
     blogs = blogPost.objects.get(id=pk)
     context = {
         "blogs":blogs
     }
     return render(request, "codesimple/blogDetailView.html", context)
 
+@login_required
+def blogDeletelView(request, pk):
+    blogs = blogPost.objects.get(id=pk)
+    blogs.delete()
+    return redirect("/home")

@@ -2,12 +2,19 @@
 
 {% block content %}
 
+
 <h1> All created articles: </h1>
 <br/>
 <br/>
+.limitText {
+    width: 20px;
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 {% for obj in blogs %}
     <h1> Title:      {{ obj.title }} </h1>
-    <h1> Content:    {{ obj.content  }} </h1>
+    <h1> Content:    {{ obj.content |slice:"200"  }} </h1> 
     <h1> Creator:    {{ obj.created_by  }} </h1>
     <a style ="color:blue;" href="/home/{{obj.pk}}">click here for full detail</a> <br/>
     {% if request.user == obj.created_by %}

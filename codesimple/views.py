@@ -68,3 +68,5 @@ def blogDeletelView(request, pk):
     if request.user == blogs.created_by:
         blogs.delete()
     return redirect("/home")
+
+

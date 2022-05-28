@@ -33,8 +33,5 @@ urlpatterns = [
     path('listmyblogs/', listMyBlogs, name='listmyblogs'),
     path('home/<int:pk>/', blogDetailView, name = 'blog-detail'),
     path('home/<pk>/delete', blogDeletelView, name = 'blog-delete'),
-
-
-
 ]
 

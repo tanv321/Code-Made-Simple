@@ -46,7 +46,8 @@
                 <h5>
                     <h1 style = "background-color:powderblue;" style=font-size:27px > Title:  {{ obj.title }} </h1><br/ >
                 </h5>
-                <h1> Content:   <h1 class="increase"> {{ obj.content |slice:"200"  }} </h1> </h1> 
+                <h1 class="decrease"> Tags: {{ obj.tags }} </h1>
+                <h1 style=font-size:22px> Content:   <h1 class="increase"> {{ obj.content |slice:"200"  }} </h1> </h1> 
                 <h1 class="decrease"> Creator:    {{ obj.created_by  }} </h1>
                 <a style ="color:blue;" href="/home/{{obj.pk}}">click here for full detail</a> <br/>
                 {% if request.user == obj.created_by %}

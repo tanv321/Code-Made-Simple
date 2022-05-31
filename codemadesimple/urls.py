@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.contrib.auth.views import LoginView, LogoutView
-from codesimple.views import SignupView, home_page, blogNew, blogList, listMyBlogs, blogDetailView, blogDeletelView, justCheking
+from codesimple.views import SignupView, home_page, blogNew, blogList, listMyBlogs, blogDetailView, blogDeletelView
 from django.contrib.auth import views as auth_views
 
 
@@ -33,7 +33,6 @@ urlpatterns = [
     path('listmyblogs/', listMyBlogs, name='listmyblogs'),
     path('home/<int:pk>/', blogDetailView, name = 'blog-detail'),
     path('home/<pk>/delete', blogDeletelView, name = 'blog-delete'),
-    path('random/', justCheking, name = "random"),
 
 ]
 

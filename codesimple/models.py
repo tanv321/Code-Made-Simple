@@ -9,9 +9,12 @@ from django.contrib.auth.models import User
 class BlogPost(models.Model):
     title = models.CharField(max_length=100)
     content = models.CharField(max_length=5000)
+    tags = models.CharField(max_length=50)
     created_by = models.ForeignKey(User, default=1, on_delete=models.DO_NOTHING)
+    
     def __str__(self):
         return f"{self.title}"
+    
     
 class Comment(models.Model):
     blogPost = models.ForeignKey(BlogPost, null = True, related_name="comments", on_delete=models.CASCADE)
@@ -19,6 +22,6 @@ class Comment(models.Model):
     created_by = models.ForeignKey(User, default=1, on_delete=models.DO_NOTHING)
     post_id = models.PositiveSmallIntegerField(default=1)
    
-
     def __str__(self):
         return f"{self.created_by}"
+

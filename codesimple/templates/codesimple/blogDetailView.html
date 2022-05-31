@@ -45,7 +45,6 @@
 
 
   {% for comment in comm %}
-
     {% if blogPost.pk == comment.post_id %}:
       <h1>  Posted by: {{comment.created_by}} </h1>
        <h1> {{ comment.content }} </h1>

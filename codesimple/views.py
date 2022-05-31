@@ -89,21 +89,6 @@ def blogDetailView(request, pk):
 
 
 
-@login_required 
-def justCheking(request):
-    blogs = Comment.objects.all()
-    for i in blogs:
-        print(i.content)
-    print("respectfully", blogs)
-    context = {
-        "blogs":blogs
-    }
-    return render(request, "codesimple/blogDetailView.html", context)
-
-
-
-
-
 @login_required
 def blogDeletelView(request, pk):
     blogs = BlogPost.objects.get(id=pk)

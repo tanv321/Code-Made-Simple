@@ -15,9 +15,11 @@ class CustomUserCreationForm(UserCreationForm):
 class BlogPostForm(ModelForm):
     class Meta:
         model = BlogPost
+        exclude = ('created_by',)
         fields = [
             'title',
             'content',
+            'tags',
         ]
         widgets = {
             'content': Textarea()

@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, reverse
 from django.views import generic
-from .forms import CustomUserCreationForm, blogPostForm
+from .forms import CustomUserCreationForm, BlogPostForm, commentForm
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required  #login required for function based view
 from django.contrib.auth.mixins import LoginRequiredMixin  #login requied for class based views
 from django.contrib import messages
-from .models import blogPost
+from .models import BlogPost, Comment
 # Create your views here.
 class home_page(LoginRequiredMixin, TemplateView):
     template_name = "codesimple/home_page.html"
@@ -22,13 +22,13 @@ class SignupView(generic.CreateView):
 @login_required 
 def blogNew(request):
     if request.method == "POST":
-        form = blogPostForm(request.POST)
+        form = BlogPostForm(request.POST)
         if form.is_valid():
             form.instance.created_by = request.user
             form.save()
             return redirect("/home")
     else:
-        form = blogPostForm()
+        form = BlogPostForm()
     context = { 
         "form": form 
     }
@@ -37,7 +37,7 @@ def blogNew(request):
 
 @login_required 
 def blogList(request):
-    blogs = blogPost.objects.all()
+    blogs = BlogPost.objects.all()
     context = {
         "blogs":blogs
     }
@@ -47,24 +47,66 @@ def blogList(request):
 
 @login_required
 def listMyBlogs(request):
-    blogs = blogPost.objects.filter(created_by=request.user)
+    blogs = BlogPost.objects.filter(created_by=request.user)
     context = {
         "blogs":blogs
     }
     return render(request, "codesimple/listmyblogs.html", context)
 
 
+# @login_required
+# def blogDetailView(request, pk):
+#     blogs = BlogPost.objects.get(id=pk)
+#     context = {
+#         "blogs":blogs
+#     }
+#     return render(request, "codesimple/blogDetailView.html", context)
 @login_required
 def blogDetailView(request, pk):
-    blogs = blogPost.objects.get(id=pk)
+    blogPost = BlogPost.objects.get(id=pk)
+    if request.method == "POST":
+        form = commentForm(request.POST)
+        user_comment = None
+        if form.is_valid():
+            user_comment = form.save(commit = False)
+            # user_comment.blogPost = blogPost
+            user_comment.post_id = pk
+            user_comment.created_by = request.user
+
+            user_comment.save()
+            return redirect('/home/'+str(pk))
+    else:
+        form = commentForm()
+
+ 
+    context = {
+        "blogPost":blogPost,
+        "form":form,
+        "comm":Comment.objects.all()
+
+    }
+    return render(request, "codesimple/blogDetailView.html", context)
+
+
+
+@login_required 
+def justCheking(request):
+    blogs = Comment.objects.all()
+    for i in blogs:
+        print(i.content)
+    print("respectfully", blogs)
     context = {
         "blogs":blogs
     }
     return render(request, "codesimple/blogDetailView.html", context)
 
+
+
+
+
 @login_required
 def blogDeletelView(request, pk):
-    blogs = blogPost.objects.get(id=pk)
+    blogs = BlogPost.objects.get(id=pk)
     if request.user == blogs.created_by:
         blogs.delete()
     return redirect("/home")

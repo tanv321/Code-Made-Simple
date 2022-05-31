@@ -9,6 +9,18 @@
     top: -3;
     width: 100px;
         }
+   hr.color {
+       border: 2px solid blue;
+    }
+   hr.color2 {
+       border: 1px solid gray;
+    }
+    a.fixed {
+    position: fixed;
+    right: 0;
+    top: -3;
+    width: 100px;
+        }
   </style>
   <a class="fixed" href="{% url 'home' %}">Back to All Articles</a>
   <div class="container px-5 py-24 mx-auto">
@@ -20,12 +32,36 @@
                     Article
                 </a>
         </div>
-          <h1 style = "background-color:powderblue;" style=font-size:27px > Title:     {{ blogs.title }} </h1><br/>
-          <h1 style ="background-color:white;" style=font-size:20px> Content:    {{ blogs.content  }} </h1><br/>
-          <h1 style=font-size:20px> Creator:    {{ blogs.created_by  }} </h1>     
-          {% if request.user == blogs.created_by %}
-          <a style ="color:red;" href={% url "blog-delete" blogs.pk %}>Delete Article</a>  
-          {% endif %}             
+          <h1 style = "background-color:powderblue;" style=font-size:27px > Title:     {{ blogPost.title }} </h1><br/>
+          <h1 style ="background-color:white;" style=font-size:20px> Content:    {{ blogPost.content  }} </h1><br/>
+          <h1 style=font-size:20px> Creator:    {{ blogPost.created_by  }} </h1>     
+          {% if request.user == blogPost.created_by %}
+            <a style ="color:red;" href={% url "blog-delete" blogPost.pk %}>Delete Article</a>  
+          {% endif %} <br/><br/><br/>  
+      <hr class = "color"/>       
+          <h1> Comments </h1>
+      <hr class = "color2"/>  
+  
+
+
+  {% for comment in comm %}
+
+    {% if blogPost.pk == comment.post_id %}:
+      <h1>  Posted by: {{comment.created_by}} </h1>
+       <h1> {{ comment.content }} </h1>
+      {% endif %}
+  {% endfor %}
+  <br/>
+  <br/>
+<hr class = "color2"/>   
+      <h2> Add a comment </h2>
+<hr class = "color2"/>  
+
+        <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+        </form>
+
 </section>
 {% endblock content %}
-    
